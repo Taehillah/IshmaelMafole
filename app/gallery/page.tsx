@@ -1,6 +1,6 @@
 import SectionHeading from "../../components/SectionHeading";
 import GalleryMasonry from "../../components/GalleryMasonry";
-import { getGalleryItems } from "../../lib/gallery";
+import { getGalleryGroups } from "../../lib/gallery";
 import styles from "../../styles/GalleryPage.module.css";
 import type { Metadata } from "next";
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function GalleryPage() {
-  const galleryItems = getGalleryItems();
+  const galleryGroups = getGalleryGroups();
 
   return (
     <div className="section">
@@ -22,7 +22,16 @@ export default function GalleryPage() {
       </div>
       <section className={`section-sm parallax-block ${styles.parallaxSection}`}>
         <div className="container">
-          <GalleryMasonry items={galleryItems} />
+          {galleryGroups.map((group) => (
+            <div className={styles.group} key={group.title}>
+              <div className={styles.groupHeader}>
+                <p className={styles.groupLabel}>Series</p>
+                <h2 className={styles.groupTitle}>{group.title}</h2>
+                <p className={styles.groupStory}>{group.story}</p>
+              </div>
+              <GalleryMasonry items={group.items} />
+            </div>
+          ))}
         </div>
       </section>
       <section className={`section-sm ${styles.callout}`}>

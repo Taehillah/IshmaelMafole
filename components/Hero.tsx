@@ -34,10 +34,18 @@ export default function Hero({ featuredImages = [] }: HeroProps) {
               <span className="cursor" />
             </h1>
             <div className={styles.roles}>
-              <p>A servant of God</p>
-              <p>Software Developer</p>
-              <p>Photographer/Videographer</p>
-              <p>Designer/Creative</p>
+              <Link className={styles.roleLink} href="/about">
+                A servant of God
+              </Link>
+              <Link className={styles.roleLink} href="/projects">
+                Software Developer
+              </Link>
+              <Link className={styles.roleLink} href="/gallery">
+                Photographer/Videographer
+              </Link>
+              <Link className={styles.roleLink} href="/about">
+                Designer/Creative
+              </Link>
             </div>
             <div className={styles.actions}>
               <Link className={styles.primaryButton} href="/projects">

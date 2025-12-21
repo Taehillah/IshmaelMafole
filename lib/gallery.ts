@@ -8,6 +8,12 @@ export type GalleryItem = {
   type: "Photo" | "Video";
 };
 
+export type GalleryGroup = {
+  title: string;
+  story: string;
+  items: GalleryItem[];
+};
+
 const fallbackGalleryItems: GalleryItem[] = [
   {
     src: "/gallery/frame-01.svg",
@@ -86,6 +92,26 @@ const toGalleryItem = (fileName: string): GalleryItem => {
   };
 };
 
+const getGalleryItemFromFile = (
+  fileName: string,
+  overrides: Partial<Pick<GalleryItem, "title" | "caption" | "type">> = {}
+): GalleryItem | null => {
+  const filePath = path.join(galleryDirectory, fileName);
+
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  const baseItem = toGalleryItem(fileName);
+
+  return {
+    ...baseItem,
+    ...overrides
+  };
+};
+
+const isGalleryItem = (item: GalleryItem | null): item is GalleryItem => Boolean(item);
+
 export const getGalleryItems = (): GalleryItem[] => {
   try {
     const entries = fs.readdirSync(galleryDirectory, { withFileTypes: true });
@@ -104,4 +130,92 @@ export const getGalleryItems = (): GalleryItem[] => {
   } catch (error) {
     return fallbackGalleryItems;
   }
+};
+
+export const getGalleryGroups = (): GalleryGroup[] => {
+  const touchLetsGoItems = [
+    {
+      fileName: "silhoette1.jpg",
+      title: "Silhoette 01",
+      caption: ""
+    },
+    {
+      fileName: "silhoette2.jpg",
+      title: "Silhoette 02",
+      caption: ""
+    },
+    {
+      fileName: "silhoette3.jpg",
+      title: "Silhoette 03",
+      caption: ""
+    }
+  ]
+    .map(({ fileName, ...overrides }) => getGalleryItemFromFile(fileName, overrides))
+    .filter(isGalleryItem);
+
+  const touchLetsGoKickItems = [
+    {
+      fileName: "kick1.jpg",
+      title: "Kick 01",
+      caption: ""
+    },
+    {
+      fileName: "kick2.jpg",
+      title: "Kick 02",
+      caption: ""
+    }
+  ]
+    .map(({ fileName, ...overrides }) => getGalleryItemFromFile(fileName, overrides))
+    .filter(isGalleryItem);
+
+const groups: GalleryGroup[] = [
+    {
+      title: "Kasie",
+      story:
+        "Black, the new white. A leap that ceaced the moment. I just had to stop and join these young men having the only fun they know best. #silhouette #blacknwhite #monochrome #fun #games #telepathy #eclipse",
+      items: touchLetsGoItems
+    },
+    {
+      title: "Touch lets Go!",
+      story:
+        "My place of Origin, Kroonstad. This small town is known mainly for a number of celebrated people that emerge from it. I took an initiative to celebrate its incubates through my lens.",
+      items: touchLetsGoKickItems
+    },
+    {
+      title: "Motherhood",
+      story:
+        "Gentle strength and quiet joy -- a tribute to the everyday grace of motherhood.",
+      items: [
+        {
+          fileName: "mother1.jpg",
+          title: "Mother 01",
+          caption: ""
+        },
+        {
+          fileName: "mother2.jpg",
+          title: "Mother 02",
+          caption: ""
+        },
+        {
+          fileName: "mother3.jpg",
+          title: "Mother 03",
+          caption: ""
+        }
+      ]
+        .map(({ fileName, ...overrides }) => getGalleryItemFromFile(fileName, overrides))
+        .filter(isGalleryItem)
+    }
+  ].filter((group) => group.items.length > 0);
+
+  if (groups.length === 0) {
+    return [
+      {
+        title: "Gallery",
+        story: "Selected frames from my visual archives.",
+        items: getGalleryItems()
+      }
+    ];
+  }
+
+  return groups;
 };

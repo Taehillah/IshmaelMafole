@@ -25,3 +25,36 @@
   border-radius: 20px;
   text-align: center;
 }
+
+.group {
+  margin-bottom: 4rem;
+}
+
+.group:last-child {
+  margin-bottom: 0;
+}
+
+.groupHeader {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.groupLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.groupTitle {
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--color-text);
+}
+
+.groupStory {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}

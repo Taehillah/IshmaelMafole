@@ -106,8 +106,13 @@
   line-height: 1.6;
 }
 
-.roles p {
-  margin: 0;
+.roleLink {
+  color: var(--color-muted);
+  transition: color 0.2s ease;
+}
+
+.roleLink:hover {
+  color: var(--color-accent);
 }
 
 .actions {
