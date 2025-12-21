@@ -1,10 +1,34 @@
 import SectionHeading from "../../components/SectionHeading";
+import Link from "next/link";
 import styles from "../../styles/About.module.css";
+import homeStyles from "../../styles/Home.module.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About"
 };
+
+const highlights = [
+  {
+    title: "Systems-Aware Builds",
+    text: "From OS fundamentals to backend workflows, every interface maps to secure, resilient infrastructure."
+  },
+  {
+    title: "Business-Driven Outcomes",
+    text: "Case studies prioritize operational clarity, compliance, and measurable impact for institutions."
+  },
+  {
+    title: "Cinematic Visual Craft",
+    text: "Eulogia Graphix delivers photography and video narratives with an engineering eye for detail."
+  }
+];
+
+const focusAreas = [
+  "Secure platforms and access control",
+  "Full-stack development with systems rigor",
+  "Data-informed design decisions",
+  "Brand and visual storytelling"
+];
 
 export default function AboutPage() {
   return (
@@ -38,6 +62,41 @@ export default function AboutPage() {
             institutional and business problems with clarity, empathy, and
             craftsmanship.
           </p>
+        </div>
+        <div className={styles.capabilities}>
+          <SectionHeading
+            label="Capabilities"
+            title="Engineering the platforms that businesses depend on"
+            description="I build software that respects operational realities -- resilient backends, thoughtful interfaces, and a commitment to security from the first commit."
+          />
+          <div className="row g-4">
+            {highlights.map((item) => (
+              <div className="col-lg-4" key={item.title}>
+                <div className={`glass-panel ${homeStyles.highlightCard}`}>
+                  <h3>{item.title}</h3>
+                  <p className="text-muted">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.focusBlock}>
+            <div className={`glass-panel ${homeStyles.focusCard}`}>
+              <div>
+                <p className={homeStyles.label}>Current Focus</p>
+                <h3 className={homeStyles.focusTitle}>
+                  Building mission-ready systems with a cinematic sensibility.
+                </h3>
+              </div>
+              <ul className={homeStyles.focusList}>
+                {focusAreas.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <Link className={homeStyles.focusLink} href="/projects">
+                Explore the case studies {"->"}
+              </Link>
+            </div>
+          </div>
         </div>
         <hr className="terminal-divider" />
         <div className="row g-4">

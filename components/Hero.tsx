@@ -4,7 +4,7 @@ import styles from "../styles/Hero.module.css";
 import type { GalleryItem } from "../lib/gallery";
 
 type HeroImage = GalleryItem & {
-  tag: string;
+  tag?: string;
 };
 
 type HeroProps = {
@@ -12,63 +12,55 @@ type HeroProps = {
 };
 
 export default function Hero({ featuredImages = [] }: HeroProps) {
+  const heroImage = featuredImages[0];
+
   return (
     <section className={`parallax-block ${styles.hero}`}>
       <div className="parallax-layer" aria-hidden="true" />
       <div className="container position-relative">
-        <div className={styles.layout}>
-          <div className={styles.content}>
-            <span className="badge-outline">Systems + Creative</span>
+        <div className={styles.split}>
+          <div className={styles.imagePanel} aria-hidden={!heroImage}>
+            {heroImage ? (
+              <>
+                <Image
+                  src={heroImage.src}
+                  alt={heroImage.title}
+                  fill
+                  sizes="(max-width: 991px) 100vw, 55vw"
+                  className={styles.heroImage}
+                  priority
+                />
+                <div className={styles.imageOverlay} />
+                {heroImage.tag ? (
+                  <span className={styles.imageTag}>{heroImage.tag}</span>
+                ) : null}
+              </>
+            ) : (
+              <div className={styles.imageFallback} />
+            )}
+          </div>
+          <div className={styles.contentPanel}>
+            <span className={styles.kicker}>Systems + Creative</span>
             <h1 className={`${styles.title} matrix-text`}>
-              ISHMAEL L. MAFOLE
+              Ishmael L. Mafole
               <span className="cursor" />
             </h1>
-            <p className={styles.subtitle}>
-              Full-Stack &amp; Systems-Aware Software Developer
-              <br />
-              Photographer | Videographer | UX/UI Designer
-            </p>
-            <p className={styles.statement}>
-              "I design structured systems, secure platforms, and visual stories --
-              where engineering meets creativity."
-            </p>
+            <div className={styles.roles}>
+              <p>A servant of God</p>
+              <p>IT student</p>
+              <p>(Full Stack + Mobile Developer)</p>
+              <p>Photographer/Videographer @ Eulogia Graphix</p>
+              <p>(Creative, Portrait, Event &amp; Documentary)</p>
+            </div>
             <div className={styles.actions}>
               <Link className={styles.primaryButton} href="/projects">
-                View Case Studies
+                Enter Here
               </Link>
               <Link className={styles.secondaryButton} href="/contact">
                 Start a Conversation
               </Link>
             </div>
           </div>
-          {featuredImages.length > 0 ? (
-            <div className={styles.gallery} aria-label="Featured photography">
-              <p className={styles.galleryLabel}>Featured Frames</p>
-              <div className={styles.galleryGrid}>
-                {featuredImages.map((item, index) => (
-                  <figure
-                    className={`${styles.photoCard} ${
-                      index === 0 ? styles.photoCardLarge : ""
-                    }`}
-                    key={item.src}
-                  >
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 991px) 90vw, 40vw"
-                      className={styles.photoImage}
-                      priority={index === 0}
-                    />
-                    <figcaption className={styles.photoCaption}>
-                      <span className={styles.photoTag}>{item.tag}</span>
-                      <span className={styles.photoTitle}>{item.title}</span>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            </div>
-          ) : null}
         </div>
       </div>
     </section>

@@ -34,3 +34,11 @@
   display: grid;
   gap: 1.2rem;
 }
+
+.capabilities {
+  margin: 3rem 0;
+}
+
+.focusBlock {
+  margin-top: 2.5rem;
+}
