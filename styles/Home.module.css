@@ -9,7 +9,11 @@
 }
 
 .focusSection {
-  background: radial-gradient(circle at top, rgba(18, 32, 27, 0.6), transparent 60%);
+  background: radial-gradient(
+    circle at top,
+    rgba(var(--color-accent-rgb), 0.12),
+    transparent 60%
+  );
 }
 
 .focusCard {
@@ -75,7 +79,7 @@
   padding: 0.85rem 1.8rem;
   border-radius: 999px;
   background: var(--color-accent);
-  color: #04110c;
+  color: var(--color-accent-contrast);
   font-weight: 600;
 }
 

@@ -1,15 +1,48 @@
 :root {
-  color-scheme: dark;
-  --color-bg: #070909;
-  --color-surface: #101414;
-  --color-surface-soft: rgba(16, 20, 20, 0.75);
-  --color-text: #e4e7e7;
-  --color-muted: #9aa2a2;
-  --color-accent: #55d48f;
-  --color-accent-soft: rgba(85, 212, 143, 0.2);
-  --color-border: rgba(85, 212, 143, 0.15);
-  --color-highlight: rgba(255, 255, 255, 0.08);
-  --shadow-glow: 0 0 20px rgba(85, 212, 143, 0.15);
+  color-scheme: light dark;
+  --color-bg: #c2cdd2;
+  --color-bg-rgb: 194, 205, 210;
+  --color-surface: #d1dbe0;
+  --color-surface-rgb: 209, 219, 224;
+  --color-surface-soft: rgba(209, 219, 224, 0.85);
+  --color-text: #f7fafb;
+  --color-muted: #b2bdc2;
+  --color-accent: #7ad9e6;
+  --color-accent-strong: #4ec5d6;
+  --color-accent-contrast: #0b1d21;
+  --color-accent-rgb: 122, 217, 230;
+  --color-accent-soft: rgba(122, 217, 230, 0.2);
+  --color-border: rgba(255, 255, 255, 0.45);
+  --color-highlight: rgba(255, 255, 255, 0.9);
+  --color-shadow: rgba(58, 66, 72, 0.25);
+  --shadow-glow: 0 0 28px rgba(122, 217, 230, 0.35);
+  --nav-toggler-filter: invert(0.1);
+  --hero-image-blend: luminosity;
+  --hero-image-opacity: 0.9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1416;
+    --color-bg-rgb: 15, 20, 22;
+    --color-surface: #1b2225;
+    --color-surface-rgb: 27, 34, 37;
+    --color-surface-soft: rgba(27, 34, 37, 0.78);
+    --color-text: #f7fafb;
+    --color-muted: #b2bdc2;
+    --color-accent: #7ad9e6;
+    --color-accent-strong: #4ec5d6;
+    --color-accent-contrast: #0b1d21;
+    --color-accent-rgb: 122, 217, 230;
+    --color-accent-soft: rgba(122, 217, 230, 0.2);
+    --color-border: rgba(122, 217, 230, 0.2);
+    --color-highlight: rgba(255, 255, 255, 0.08);
+    --color-shadow: rgba(0, 0, 0, 0.55);
+    --shadow-glow: 0 0 26px rgba(122, 217, 230, 0.25);
+    --nav-toggler-filter: invert(0.9);
+    --hero-image-blend: screen;
+    --hero-image-opacity: 0.85;
+  }
 }
 
 * {
@@ -23,8 +56,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body), sans-serif;
-  background: radial-gradient(circle at 15% 10%, rgba(22, 36, 31, 0.6), transparent 45%),
-    radial-gradient(circle at 85% 10%, rgba(10, 28, 19, 0.45), transparent 40%),
+  background: radial-gradient(circle at 15% 10%, rgba(var(--color-accent-rgb), 0.18), transparent 45%),
+    radial-gradient(circle at 85% 12%, rgba(var(--color-accent-rgb), 0.08), transparent 45%),
     var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
@@ -71,9 +104,13 @@ main {
 }
 
 .glass-panel {
-  background: linear-gradient(135deg, rgba(18, 22, 22, 0.85), rgba(10, 14, 14, 0.75));
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-soft),
+    rgba(var(--color-bg-rgb), 0.85)
+  );
   border: 1px solid var(--color-border);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 20px 60px var(--color-shadow);
   backdrop-filter: blur(14px);
 }
 
@@ -104,8 +141,19 @@ main {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(120deg, transparent, rgba(85, 212, 143, 0.08), transparent),
-    repeating-linear-gradient(0deg, rgba(85, 212, 143, 0.04) 0, rgba(85, 212, 143, 0.04) 1px, transparent 1px, transparent 6px);
+  background-image: linear-gradient(
+      120deg,
+      transparent,
+      rgba(var(--color-accent-rgb), 0.08),
+      transparent
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(var(--color-accent-rgb), 0.04) 0,
+      rgba(var(--color-accent-rgb), 0.04) 1px,
+      transparent 1px,
+      transparent 6px
+    );
   opacity: 0.35;
   transform: translate3d(0, 0, 0);
   pointer-events: none;
@@ -114,8 +162,12 @@ main {
 .parallax-layer {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(85, 212, 143, 0.12), transparent 45%),
-    radial-gradient(circle at 80% 30%, rgba(33, 79, 58, 0.35), transparent 50%);
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(var(--color-accent-rgb), 0.12),
+      transparent 45%
+    ),
+    radial-gradient(circle at 80% 30%, rgba(var(--color-accent-rgb), 0.2), transparent 50%);
   transform: translateZ(0);
   pointer-events: none;
 }

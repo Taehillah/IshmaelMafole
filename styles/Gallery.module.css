@@ -12,8 +12,8 @@
   position: relative;
   overflow: hidden;
   border-radius: 18px;
-  border: 1px solid rgba(85, 212, 143, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  box-shadow: 0 20px 40px var(--color-shadow);
 }
 
 .image {
@@ -31,7 +31,11 @@
   justify-content: flex-end;
   gap: 0.35rem;
   padding: 1.5rem;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(5, 8, 8, 0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(var(--color-bg-rgb), 0.08),
+    rgba(var(--color-bg-rgb), 0.92)
+  );
   color: var(--color-text);
   opacity: 0;
   transition: opacity 0.3s ease;

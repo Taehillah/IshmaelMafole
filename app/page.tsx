@@ -1,8 +1,13 @@
+import fs from "fs";
+import path from "path";
 import Hero from "../components/Hero";
 import { getGalleryItems } from "../lib/gallery";
 
 export default function HomePage() {
   const galleryItems = getGalleryItems();
+  const heroFileName = "gallery/hero.png";
+  const heroFilePath = path.join(process.cwd(), "public", heroFileName);
+  const heroFileExists = fs.existsSync(heroFilePath);
   const preferredHeroFiles = [
     "self closeup.jpg",
     "full portrait.jpg",
@@ -16,7 +21,14 @@ export default function HomePage() {
       )
     )
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
-  const heroItem = preferredHeroItems[0] ?? galleryItems[0];
+  const heroItem = heroFileExists
+    ? {
+        src: `/${heroFileName}`,
+        title: "Hero Portrait",
+        caption: "",
+        type: "Photo"
+      }
+    : preferredHeroItems[0] ?? galleryItems[0];
   const heroImages = heroItem
     ? [
         {

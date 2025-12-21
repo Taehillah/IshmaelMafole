@@ -18,28 +18,16 @@ export default function Hero({ featuredImages = [] }: HeroProps) {
     <section className={`parallax-block ${styles.hero}`}>
       <div className="parallax-layer" aria-hidden="true" />
       <div className="container position-relative">
-        <div className={styles.split}>
-          <div className={styles.imagePanel} aria-hidden={!heroImage}>
-            {heroImage ? (
-              <>
-                <Image
-                  src={heroImage.src}
-                  alt={heroImage.title}
-                  fill
-                  sizes="(max-width: 991px) 100vw, 55vw"
-                  className={styles.heroImage}
-                  priority
-                />
-                <div className={styles.imageOverlay} />
-                {heroImage.tag ? (
-                  <span className={styles.imageTag}>{heroImage.tag}</span>
-                ) : null}
-              </>
-            ) : (
-              <div className={styles.imageFallback} />
-            )}
+        <div className={styles.heroShell}>
+          <div className={styles.sideRail} aria-hidden="true">
+            <span className={styles.sideLine} />
+            <span className={styles.sideLabel}>Portfolio</span>
+            <span className={styles.sideLine} />
+            <span className={styles.sideLabel}>Systems</span>
+            <span className={styles.sideLine} />
+            <span className={styles.sideLabel}>Visual</span>
           </div>
-          <div className={styles.contentPanel}>
+          <div className={styles.copy}>
             <span className={styles.kicker}>Systems + Creative</span>
             <h1 className={`${styles.title} matrix-text`}>
               Ishmael L. Mafole
@@ -47,19 +35,40 @@ export default function Hero({ featuredImages = [] }: HeroProps) {
             </h1>
             <div className={styles.roles}>
               <p>A servant of God</p>
-              <p>IT student</p>
-              <p>(Full Stack + Mobile Developer)</p>
-              <p>Photographer/Videographer @ Eulogia Graphix</p>
-              <p>(Creative, Portrait, Event &amp; Documentary)</p>
+              <p>Software Developer</p>
+              <p>Photographer/Videographer</p>
+              <p>Designer/Creative</p>
             </div>
             <div className={styles.actions}>
               <Link className={styles.primaryButton} href="/projects">
-                Enter Here
+                Enter Dev
               </Link>
               <Link className={styles.secondaryButton} href="/contact">
                 Start a Conversation
               </Link>
             </div>
+          </div>
+          <div className={styles.portraitPanel} aria-hidden={!heroImage}>
+            {heroImage ? (
+              <>
+                <div className={styles.portraitCrop}>
+                  <Image
+                    src={heroImage.src}
+                    alt={heroImage.title}
+                    fill
+                    sizes="(max-width: 991px) 100vw, 45vw"
+                    className={styles.heroImage}
+                    priority
+                  />
+                  <div className={styles.heroImageOverlay} />
+                  {heroImage.tag ? (
+                    <span className={styles.imageTag}>{heroImage.tag}</span>
+                  ) : null}
+                </div>
+              </>
+            ) : (
+              <div className={styles.imageFallback} />
+            )}
           </div>
         </div>
       </div>
