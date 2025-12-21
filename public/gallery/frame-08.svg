@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg-08" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050707" />
+      <stop offset="100%" stop-color="#0e1a17" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg-08)" />
+  <rect x="60" y="70" width="680" height="860" rx="32" fill="rgba(10,14,14,0.65)" stroke="#48c97f" stroke-width="1.5" />
+  <path d="M120 230 H680" stroke="#48c97f" stroke-opacity="0.4" stroke-width="2" />
+  <path d="M160 420 H640" stroke="#48c97f" stroke-opacity="0.25" stroke-width="1.5" />
+  <path d="M200 610 H600" stroke="#48c97f" stroke-opacity="0.2" stroke-width="1.2" />
+  <text x="120" y="190" font-family="JetBrains Mono, monospace" font-size="24" fill="#48c97f" letter-spacing="6">FRAME 08</text>
+  <text x="120" y="860" font-family="Space Grotesk, sans-serif" font-size="18" fill="#9aa2a2">Eulogia Graphix Monochrome Study</text>
+</svg>

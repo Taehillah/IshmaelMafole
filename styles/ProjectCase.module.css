@@ -1,0 +1,75 @@
+.card {
+  padding: 2.4rem;
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4), 0 0 22px rgba(85, 212, 143, 0.15);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.55rem;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.link {
+  font-family: var(--font-mono), monospace;
+  color: var(--color-accent);
+}
+
+.body {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.4rem;
+}
+
+.text {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.stackItem {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(85, 212, 143, 0.2);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}

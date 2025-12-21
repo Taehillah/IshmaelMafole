@@ -1,0 +1,15 @@
+.parallaxSection {
+  position: relative;
+  background: radial-gradient(circle at 20% 20%, rgba(85, 212, 143, 0.08), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(15, 26, 22, 0.6), transparent 55%);
+}
+
+.callout {
+  background: linear-gradient(120deg, rgba(6, 9, 9, 0.9), rgba(10, 14, 14, 0.95));
+}
+
+.calloutCard {
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+}

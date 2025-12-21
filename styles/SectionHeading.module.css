@@ -1,0 +1,17 @@
+.wrapper {
+  margin-bottom: 2.5rem;
+  max-width: 720px;
+}
+
+.title {
+  margin-top: 1.2rem;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-family: var(--font-mono), monospace;
+  color: var(--color-text);
+}
+
+.description {
+  margin-top: 1rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+}

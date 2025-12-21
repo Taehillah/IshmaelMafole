@@ -1,0 +1,24 @@
+.infoCard {
+  padding: 2.2rem;
+  border-radius: 20px;
+  height: 100%;
+}
+
+.infoTitle {
+  margin-bottom: 1rem;
+}
+
+.infoList {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.infoLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.3rem;
+}
