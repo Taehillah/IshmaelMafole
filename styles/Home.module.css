@@ -48,6 +48,8 @@
 .focusTitle {
   font-size: 1.6rem;
   margin: 0.6rem 0 0;
+  color: var(--color-text);
+  text-shadow: 0 0 18px rgba(var(--color-accent-rgb), 0.35);
 }
 
 .focusList {

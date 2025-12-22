@@ -40,7 +40,7 @@ export default function AboutPage() {
           description="Faith, discipline, and deep systems knowledge guide how I build software and visual experiences."
         />
         <div className={`glass-panel ${styles.bio}`}>
-          <p>
+          <p className="color:white">
             I am Ishmael L. Mafole, born in Kroonstad, Free State, South Africa -- a
             servant of God grounded in purpose, humility, and disciplined growth.
             My work sits at the intersection of software engineering and creative
