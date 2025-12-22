@@ -6,6 +6,14 @@ export type ProjectCase = {
   features: string[];
   stack: string[];
   impact: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  gallery?: {
+    src: string;
+    alt: string;
+  }[];
   status: {
     label: string;
     value: number;
@@ -14,6 +22,33 @@ export type ProjectCase = {
 };
 
 export const projects: ProjectCase[] = [
+  {
+    title: "Rueda -- South African e-hailing experience",
+    subtitle: "Flutter-based rider + driver flows built for local mobility.",
+    problem:
+      "Local e-hailing teams needed a realistic, end-to-end product demo without relying on live backend services.",
+    solution:
+      "Delivered a fully offline Flutter experience with rider, driver, wallet, and support journeys powered by mock services.",
+    features: [
+      "Rider search, fare estimate, and trip timeline flow",
+      "Driver mode with availability, earnings, and request handling",
+      "Wallet, payment methods, and transaction ledger views",
+      "Support center tickets with modal case creation"
+    ],
+    stack: ["Flutter", "Dart", "Provider", "Material 3", "Mock repositories"],
+    impact:
+      "Enables full product walkthroughs and UX validation without a backend dependency.",
+    image: {
+      src: "/gallery/e-hailing.jpg",
+      alt: "Rueda e-hailing application interface"
+    },
+    status: [
+      { label: "Discovery", value: 90 },
+      { label: "Build", value: 86 },
+      { label: "Launch", value: 78 }
+    ],
+    href: "https://github.com/ishmaelmafole/rueda"
+  },
   {
     title: "StaffSync -- Workforce Management System",
     subtitle: "Operations visibility for growing teams and field staff.",
@@ -30,35 +65,26 @@ export const projects: ProjectCase[] = [
     stack: ["React", "Bootstrap 5", "PHP", "MySQL", "REST APIs"],
     impact:
       "Reduced scheduling conflicts, accelerated payroll readiness, and improved staffing transparency.",
+    gallery: [
+      {
+        src: "/gallery/staff1.png",
+        alt: "StaffSync dashboard overview"
+      },
+      {
+        src: "/gallery/staff2.png",
+        alt: "StaffSync staffing workflow view"
+      },
+      {
+        src: "/gallery/staff3.png",
+        alt: "StaffSync reporting interface"
+      }
+    ],
     status: [
       { label: "Discovery", value: 92 },
       { label: "Build", value: 88 },
       { label: "Launch", value: 84 }
     ],
     href: "https://github.com/ishmaelmafole/staffsync"
-  },
-  {
-    title: "Paraclete Regimental Assist (Regmental Assist)",
-    subtitle: "Mission support platform for structured command workflows.",
-    problem:
-      "Unit coordination relied on manual briefings and fragmented data during high-pressure operations.",
-    solution:
-      "Designed a secure regimental assist system that consolidates operational data and command checklists.",
-    features: [
-      "Role-secured operational dashboards",
-      "Briefing and debriefing workflow templates",
-      "Incident timeline tracking",
-      "Resource allocation overview"
-    ],
-    stack: ["Next.js", "PostgreSQL", "Role-based access", "Docker"],
-    impact:
-      "Improved operational readiness and accountability for regulated environments.",
-    status: [
-      { label: "Discovery", value: 86 },
-      { label: "Build", value: 78 },
-      { label: "Launch", value: 72 }
-    ],
-    href: "https://github.com/ishmaelmafole/regimental-assist"
   },
   {
     title: "Travel Risk Monitor",

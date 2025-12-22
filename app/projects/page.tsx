@@ -11,6 +11,12 @@ export const metadata: Metadata = {
 
 const projectHighlights = [
   {
+    label: "Rueda",
+    title: "South African e-hailing experience",
+    description:
+      "Flutter rider + driver journeys with wallet, support, and offline mock services."
+  },
+  {
     label: "StaffSync",
     title: "Workforce Management System",
     description: "Consolidated staffing workflows for supervisors and frontline teams."

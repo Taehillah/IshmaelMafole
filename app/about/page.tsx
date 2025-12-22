@@ -1,5 +1,6 @@
 import SectionHeading from "../../components/SectionHeading";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "../../styles/About.module.css";
 import homeStyles from "../../styles/Home.module.css";
 import type { Metadata } from "next";
@@ -62,6 +63,46 @@ export default function AboutPage() {
             institutional and business problems with clarity, empathy, and
             craftsmanship.
           </p>
+        </div>
+        <div className={styles.selfieBlock}>
+          <div className={`glass-panel ${styles.selfieCard}`}>
+            <div className={styles.selfieHeader}>
+              <p className={homeStyles.label}>Self Portraits</p>
+              <h3 className={styles.selfieTitle}>
+                Personal frames that capture focus and intent.
+              </h3>
+            </div>
+            <div className={styles.selfieGrid}>
+              {[
+                {
+                  src: "/gallery/selfie1a.png",
+                  alt: "Self portrait with soft lighting"
+                },
+                {
+                  src: "/gallery/selfie2.jpg",
+                  alt: "Self portrait in studio light"
+                },
+                {
+                  src: "/gallery/selfie3.jpg",
+                  alt: "Self portrait with natural tones"
+                },
+                {
+                  src: "/gallery/selfie4.jpg",
+                  alt: "Self portrait with warm contrast"
+                }
+              ].map((item) => (
+                <div className={styles.selfieItem} key={item.src}>
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 768px) 45vw, (max-width: 1200px) 30vw, 220px"
+                    className={styles.selfieImage}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         <div className={styles.capabilities}>
           <SectionHeading

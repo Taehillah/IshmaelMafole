@@ -7,6 +7,48 @@
   overflow: hidden;
 }
 
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.media {
+  position: relative;
+  width: min(520px, 100%);
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 1.5rem;
+  background: transparent;
+}
+
+.mediaImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.mediaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.mediaThumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(var(--color-bg-rgb), 0.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.mediaThumbImage {
+  object-fit: cover;
+  object-position: center;
+}
+
 .card::before {
   content: "";
   position: absolute;

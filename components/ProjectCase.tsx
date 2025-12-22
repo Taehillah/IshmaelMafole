@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "../styles/ProjectCase.module.css";
 import type { ProjectCase as ProjectCaseType } from "../lib/projects";
 
@@ -9,6 +10,32 @@ type ProjectCaseProps = {
 export default function ProjectCase({ project }: ProjectCaseProps) {
   return (
     <article className={`${styles.card} glass-panel`}>
+      {project.image ? (
+        <div className={styles.media}>
+          <Image
+            src={project.image.src}
+            alt={project.image.alt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
+            className={styles.mediaImage}
+          />
+        </div>
+      ) : null}
+      {project.gallery && project.gallery.length > 0 ? (
+        <div className={styles.mediaGrid}>
+          {project.gallery.map((item) => (
+            <div className={styles.mediaThumb} key={item.src}>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 768px) 45vw, (max-width: 1200px) 30vw, 220px"
+                className={styles.mediaThumbImage}
+              />
+            </div>
+          ))}
+        </div>
+      ) : null}
       <div className={styles.header}>
         <div>
           <h3 className={styles.title}>{project.title}</h3>
