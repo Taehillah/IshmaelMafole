@@ -1,0 +1,67 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 2rem;
+  border-radius: 20px;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.cardHeader h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.cardHeader p {
+  margin: 0;
+}
+
+.skills {
+  display: grid;
+  gap: 1rem;
+}
+
+.skill {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.level {
+  color: var(--color-text);
+}
+
+.track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(var(--color-bg-rgb), 0.5);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--color-accent-rgb), 0.9),
+    rgba(var(--color-accent-rgb), 0.45)
+  );
+  box-shadow: 0 0 12px rgba(var(--color-accent-rgb), 0.25);
+}

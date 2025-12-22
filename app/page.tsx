@@ -5,7 +5,7 @@ import { getGalleryItems } from "../lib/gallery";
 
 export default function HomePage() {
   const galleryItems = getGalleryItems();
-  const heroFileName = "gallery/hero.png";
+  const heroFileName = "gallery/selfie1a.png";
   const heroFilePath = path.join(process.cwd(), "public", heroFileName);
   const heroFileExists = fs.existsSync(heroFilePath);
   const preferredHeroFiles = [
@@ -24,7 +24,7 @@ export default function HomePage() {
   const heroItem = heroFileExists
     ? {
         src: `/${heroFileName}`,
-        title: "Hero Portrait",
+        title: "Selfie Portrait",
         caption: "",
         type: "Photo"
       }
@@ -32,8 +32,7 @@ export default function HomePage() {
   const heroImages = heroItem
     ? [
         {
-          ...heroItem,
-          tag: "Hero Portrait"
+          ...heroItem
         }
       ]
     : [];

@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import styles from "../styles/Navbar.module.css";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Skills", href: "/skills" },
   { label: "Projects", href: "/projects" },
   { label: "Gallery", href: "/gallery" },
   { label: "Socials", href: "/socials" },
@@ -15,8 +17,9 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
-  if (pathname === "/") {
+  if (isHome) {
     return null;
   }
 
@@ -24,8 +27,13 @@ export default function Navbar() {
     <nav className={`navbar navbar-expand-lg navbar-dark ${styles.navbar}`}>
       <div className="container">
         <Link className={`navbar-brand ${styles.brand}`} href="/">
-          <span className="matrix-text">I.L.M</span>
-          <span className={styles.brandDot} />
+          <Image
+            src="/gallery/logo.png"
+            alt="Ishmael L. Mafole logo"
+            width={100}
+            height={100}
+            className={styles.logo}
+          />
         </Link>
         <button
           className="navbar-toggler"

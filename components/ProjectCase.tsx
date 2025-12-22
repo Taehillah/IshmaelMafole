@@ -54,6 +54,25 @@ export default function ProjectCase({ project }: ProjectCaseProps) {
           <p className={styles.label}>Impact</p>
           <p className={styles.text}>{project.impact}</p>
         </div>
+        <div>
+          <p className={styles.label}>Project Status</p>
+          <div className={styles.statusGrid}>
+            {project.status.map((item) => (
+              <div className={styles.statusItem} key={item.label}>
+                <div className={styles.statusHeader}>
+                  <span>{item.label}</span>
+                  <span className={styles.statusValue}>{item.value}%</span>
+                </div>
+                <div className={styles.statusTrack} aria-hidden="true">
+                  <span
+                    className={styles.statusFill}
+                    style={{ width: `${item.value}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </article>
   );

@@ -4,11 +4,12 @@
   align-items: center;
   padding: 120px 0 100px;
   position: relative;
-  background: linear-gradient(
-    120deg,
-    rgba(var(--color-bg-rgb), 0.92),
-    rgba(var(--color-surface-rgb), 0.85)
-  );
+  background: radial-gradient(
+      circle at 18% 16%,
+      rgba(12, 18, 20, 0.35),
+      transparent 60%
+    ),
+    linear-gradient(140deg, #040607, #05090b 55%, #030506);
   background-attachment: fixed;
 }
 
@@ -16,12 +17,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(var(--color-accent-rgb), 0.12),
-    transparent 50%
-  );
+  background: none;
   pointer-events: none;
+}
+
+.hero :global(.parallax-layer) {
+  display: none;
 }
 
 .heroShell {
@@ -80,18 +81,28 @@
   max-width: 520px;
   position: relative;
   z-index: 1;
+  padding: 2.5rem 2.25rem;
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  background: linear-gradient(
+    145deg,
+    rgba(var(--color-surface-rgb), 0.65),
+    rgba(var(--color-bg-rgb), 0.35)
+  );
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 50px var(--color-shadow);
 }
 
 .kicker {
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
+  font-size: 0.58rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
 
 .title {
-  font-size: clamp(2.8rem, 4.2vw, 5rem);
+  font-size: clamp(1.8rem, 3vw, 3.5rem);
   margin: 0;
   color: var(--color-text);
   text-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.2);
@@ -101,14 +112,27 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  font-size: 1rem;
+  font-size: 0.86rem;
   color: var(--color-muted);
   line-height: 1.6;
 }
 
 .roleLink {
   color: var(--color-muted);
+  position: relative;
+  padding-left: 1.2rem;
   transition: color 0.2s ease;
+}
+
+.roleLink::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(var(--color-accent-rgb), 0.4);
 }
 
 .roleLink:hover {
@@ -123,10 +147,11 @@
 }
 
 .primaryButton {
-  padding: 0.85rem 1.6rem;
+  padding: 0.7rem 1.2rem;
   border-radius: 999px;
   background: var(--color-accent);
   color: var(--color-accent-contrast);
+  font-size: 0.88rem;
   font-weight: 600;
   box-shadow: 0 12px 24px rgba(var(--color-accent-rgb), 0.25);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -139,11 +164,12 @@
 }
 
 .secondaryButton {
-  padding: 0.85rem 1.6rem;
+  padding: 0.7rem 1.2rem;
   border-radius: 999px;
   border: 1px solid var(--color-border);
   color: var(--color-text);
   background: rgba(var(--color-bg-rgb), 0.6);
+  font-size: 0.88rem;
   transition: border 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
@@ -154,58 +180,44 @@
 }
 
 .portraitPanel {
-  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(45vw, 560px);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   padding: 0;
-  z-index: 1;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .portraitCrop {
   position: relative;
-  width: min(520px, 100%);
-  aspect-ratio: 4 / 5;
+  width: min(560px, 100%);
+  aspect-ratio: 2 / 3;
   border-radius: 0;
-  overflow: hidden;
+  overflow: visible;
   border: none;
   box-shadow: none;
   background: transparent;
-  -webkit-mask-image: radial-gradient(circle at 8% 12%, transparent 0 18px, #000 19px),
-    radial-gradient(circle at 92% 10%, transparent 0 14px, #000 15px),
-    radial-gradient(circle at 6% 88%, transparent 0 20px, #000 21px),
-    radial-gradient(circle at 96% 86%, transparent 0 16px, #000 17px),
-    radial-gradient(circle at 50% 4%, transparent 0 12px, #000 13px),
-    radial-gradient(circle at 50% 96%, transparent 0 14px, #000 15px),
-    linear-gradient(#000, #000);
-  -webkit-mask-composite: source-over;
-  mask-image: radial-gradient(circle at 8% 12%, transparent 0 18px, #000 19px),
-    radial-gradient(circle at 92% 10%, transparent 0 14px, #000 15px),
-    radial-gradient(circle at 6% 88%, transparent 0 20px, #000 21px),
-    radial-gradient(circle at 96% 86%, transparent 0 16px, #000 17px),
-    radial-gradient(circle at 50% 4%, transparent 0 12px, #000 13px),
-    radial-gradient(circle at 50% 96%, transparent 0 14px, #000 15px),
-    linear-gradient(#000, #000);
-  mask-composite: add;
 }
 
 .heroImage {
-  object-fit: cover;
-  filter: grayscale(100%) contrast(1.05) brightness(0.98);
-  transform: scale(1.02);
-  mix-blend-mode: var(--hero-image-blend);
+  object-fit: contain;
+  object-position: right bottom;
+  filter: saturate(1.2);
+  transform: translate(6%, -6%) scale(1.2);
+  mix-blend-mode: none;
   opacity: 1;
 }
 
 .heroImageOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(var(--color-bg-rgb), 0.15),
-    rgba(var(--color-accent-rgb), 0.08) 45%,
-    rgba(var(--color-bg-rgb), 0.75)
-  );
+  background: none;
+  z-index: 1;
 }
 
 .imageTag {
@@ -221,6 +233,7 @@
   text-transform: uppercase;
   color: var(--color-accent);
   background: rgba(var(--color-bg-rgb), 0.7);
+  z-index: 3;
 }
 
 .imageFallback {
@@ -242,11 +255,15 @@
 @media (max-width: 991px) {
   .hero {
     background-attachment: scroll;
+    padding: 0;
+    min-height: 100svh;
   }
 
   .heroShell {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    display: block;
+    grid-template-columns: none;
+    min-height: 100svh;
+    padding: 8vh 0 5vh;
   }
 
   .heroShell::before,
@@ -259,11 +276,45 @@
   }
 
   .portraitPanel {
+    position: fixed;
+    inset: 0;
     padding: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .portraitCrop {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .heroImage {
+    object-position: center bottom;
+    transform: translate(5%, -6%) scale(1.12);
+  }
+
+  .copy {
+    position: relative;
+    z-index: 2;
+    margin: clamp(30vh, 36vh, 42vh) auto 0;
+    width: min(92%, 420px);
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
 @media (max-width: 575px) {
+  .copy {
+    padding: 2rem 1.6rem;
+  }
+
   .actions {
     flex-direction: column;
     align-items: stretch;
@@ -271,5 +322,11 @@
 
   .portraitCrop {
     width: 100%;
+  }
+}
+
+@media (min-width: 1360px) and (min-height: 768px) {
+  .hero {
+    padding: 0;
   }
 }

@@ -1,6 +1,22 @@
 .wrapper {
   margin-bottom: 2.5rem;
   max-width: 720px;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 2px;
+  height: 70%;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--color-accent-rgb), 0.7),
+    rgba(var(--color-accent-rgb), 0)
+  );
 }
 
 .title {

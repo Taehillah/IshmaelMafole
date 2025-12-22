@@ -6,6 +6,10 @@ export type ProjectCase = {
   features: string[];
   stack: string[];
   impact: string;
+  status: {
+    label: string;
+    value: number;
+  }[];
   href: string;
 };
 
@@ -26,6 +30,11 @@ export const projects: ProjectCase[] = [
     stack: ["React", "Bootstrap 5", "PHP", "MySQL", "REST APIs"],
     impact:
       "Reduced scheduling conflicts, accelerated payroll readiness, and improved staffing transparency.",
+    status: [
+      { label: "Discovery", value: 92 },
+      { label: "Build", value: 88 },
+      { label: "Launch", value: 84 }
+    ],
     href: "https://github.com/ishmaelmafole/staffsync"
   },
   {
@@ -44,6 +53,11 @@ export const projects: ProjectCase[] = [
     stack: ["Next.js", "PostgreSQL", "Role-based access", "Docker"],
     impact:
       "Improved operational readiness and accountability for regulated environments.",
+    status: [
+      { label: "Discovery", value: 86 },
+      { label: "Build", value: 78 },
+      { label: "Launch", value: 72 }
+    ],
     href: "https://github.com/ishmaelmafole/regimental-assist"
   },
   {
@@ -62,6 +76,11 @@ export const projects: ProjectCase[] = [
     stack: ["TypeScript", "Node.js", "SQL", "Data pipelines"],
     impact:
       "Enabled proactive decision-making and safer travel approvals for leadership teams.",
+    status: [
+      { label: "Discovery", value: 90 },
+      { label: "Build", value: 82 },
+      { label: "Launch", value: 76 }
+    ],
     href: "https://github.com/ishmaelmafole/travel-risk-monitor"
   },
   {
@@ -80,6 +99,11 @@ export const projects: ProjectCase[] = [
     stack: ["React", "Bootstrap 5", "PHP", "CMS tooling"],
     impact:
       "Strengthened public engagement and reduced manual communication overhead.",
+    status: [
+      { label: "Discovery", value: 94 },
+      { label: "Build", value: 88 },
+      { label: "Launch", value: 90 }
+    ],
     href: "https://github.com/ishmaelmafole/suncrest-websites"
   },
   {
@@ -98,6 +122,11 @@ export const projects: ProjectCase[] = [
     stack: ["PHP", "SQL", "Bootstrap 5", "Linux"],
     impact:
       "Increased booking accuracy while giving admins a full operational audit trail.",
+    status: [
+      { label: "Discovery", value: 88 },
+      { label: "Build", value: 84 },
+      { label: "Launch", value: 78 }
+    ],
     href: "https://github.com/ishmaelmafole/airline-reservation"
   },
   {
@@ -116,6 +145,11 @@ export const projects: ProjectCase[] = [
     stack: ["React", "SQL", "PHP", "Linux"],
     impact:
       "Reduced stockouts and improved procurement decisions across locations.",
+    status: [
+      { label: "Discovery", value: 84 },
+      { label: "Build", value: 80 },
+      { label: "Launch", value: 74 }
+    ],
     href: "https://github.com/ishmaelmafole/inventory-control"
   },
   {
@@ -134,6 +168,11 @@ export const projects: ProjectCase[] = [
     stack: ["Next.js", "PostgreSQL", "Tailored RBAC"],
     impact:
       "Elevated participation and preserved privacy for sensitive wellness journeys.",
+    status: [
+      { label: "Discovery", value: 90 },
+      { label: "Build", value: 83 },
+      { label: "Launch", value: 70 }
+    ],
     href: "https://github.com/ishmaelmafole/wellness-circle"
   },
   {
@@ -152,6 +191,11 @@ export const projects: ProjectCase[] = [
     stack: ["C", "Linux", "Shell", "Valgrind"],
     impact:
       "Strengthened low-level engineering intuition and system reliability practices.",
+    status: [
+      { label: "Discovery", value: 78 },
+      { label: "Build", value: 92 },
+      { label: "Launch", value: 88 }
+    ],
     href: "https://github.com/ishmaelmafole/alx-low-level"
   }
 ];

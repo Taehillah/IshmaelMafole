@@ -14,13 +14,17 @@
   border-radius: 18px;
   border: 1px solid rgba(var(--color-accent-rgb), 0.2);
   box-shadow: 0 20px 40px var(--color-shadow);
+  background: rgba(var(--color-bg-rgb), 0.4);
+  transform: translateZ(0);
 }
 
 .image {
   width: 100%;
   height: auto;
   filter: none;
-  transition: transform 0.35s ease;
+  transition: transform 0.35s ease, filter 0.35s ease;
+  display: block;
+  will-change: transform;
 }
 
 .overlay {
@@ -33,12 +37,14 @@
   padding: 1.5rem;
   background: linear-gradient(
     180deg,
-    rgba(var(--color-bg-rgb), 0.08),
-    rgba(var(--color-bg-rgb), 0.92)
+    rgba(var(--color-bg-rgb), 0.02),
+    rgba(var(--color-bg-rgb), 0.6)
   );
   color: var(--color-text);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
 .overlay h3 {
@@ -61,10 +67,12 @@
 
 .imageWrapper:hover .overlay {
   opacity: 1;
+  visibility: visible;
 }
 
 .imageWrapper:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.07);
+  filter: saturate(1.05) brightness(0.95);
 }
 
 @media (max-width: 992px) {

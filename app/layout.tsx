@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BootstrapClient from "../components/BootstrapClient";
+import HomeBodyLogo from "../components/HomeBodyLogo";
 
 const bodyFont = Space_Grotesk({
   subsets: ["latin"],
@@ -61,6 +62,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${bodyFont.variable} ${monoFont.variable}`}>
         <BootstrapClient />
+        <HomeBodyLogo />
         <Navbar />
         <main>{children}</main>
         <Footer />
