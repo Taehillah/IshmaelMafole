@@ -37,6 +37,11 @@
   margin-bottom: 0.35rem;
 }
 
+.panel :global(.text-muted) {
+  color: var(--color-text) !important;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
 .skillsGrid {
   display: grid;
   gap: 1.2rem;
@@ -48,6 +53,50 @@
 
 .focusBlock {
   margin-top: 2.5rem;
+}
+
+.certBlock {
+  margin: 2.5rem 0;
+}
+
+.certCard {
+  padding: 2rem;
+  border-radius: 22px;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.certHeader {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.certTitle {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--color-text);
+  text-shadow: 0 0 18px rgba(var(--color-accent-rgb), 0.25);
+}
+
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.certItem {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.18);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+  background: rgba(var(--color-bg-rgb), 0.2);
+}
+
+.certImage {
+  object-fit: cover;
+  object-position: center;
 }
 
 .selfieBlock {

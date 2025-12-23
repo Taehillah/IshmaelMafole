@@ -52,6 +52,15 @@
   text-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.35);
 }
 
+.navLinkActive {
+  color: var(--color-accent);
+  text-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.35);
+}
+
+.navLinkActive::after {
+  transform: scaleX(1);
+}
+
 .navLink::after {
   content: "";
   position: absolute;

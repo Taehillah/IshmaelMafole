@@ -72,6 +72,8 @@ body {
   min-height: 100vh;
   position: relative;
   isolation: isolate;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 body.home-logo {
@@ -88,9 +90,10 @@ body::after {
   inset: -15% -10%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.18;
-  filter: blur(14px);
-  animation: flare-drift 22s ease-in-out infinite;
+  opacity: 0.68;
+  filter: blur(6px);
+  animation: flare-depth 10s ease-in-out infinite;
+  will-change: transform, opacity;
   mix-blend-mode: screen;
 }
 
@@ -98,20 +101,25 @@ body::before {
   background: radial-gradient(
       circle at 18% 22%,
       rgba(var(--color-accent-rgb), 0.35),
-      transparent 28%
+      transparent 8.4%
     ),
-    radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.12), transparent 24%);
+    radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.12), transparent 7.2%),
+    radial-gradient(circle at 48% 40%, rgba(var(--color-accent-rgb), 0.22), transparent 6%),
+    radial-gradient(circle at 10% 75%, rgba(255, 255, 255, 0.08), transparent 5.4%);
 }
 
 body::after {
   background: radial-gradient(
       circle at 30% 78%,
       rgba(var(--color-accent-rgb), 0.22),
-      transparent 26%
+      transparent 7.8%
     ),
-    radial-gradient(circle at 85% 28%, rgba(255, 255, 255, 0.1), transparent 22%);
-  opacity: 0.14;
-  animation-duration: 30s;
+    radial-gradient(circle at 85% 28%, rgba(255, 255, 255, 0.1), transparent 6.6%),
+    radial-gradient(circle at 62% 18%, rgba(var(--color-accent-rgb), 0.2), transparent 5.4%),
+    radial-gradient(circle at 92% 62%, rgba(255, 255, 255, 0.08), transparent 4.8%);
+  opacity: 0.56;
+  animation: flare-depth-alt 12.5s ease-in-out infinite;
+  animation-direction: alternate;
 }
 
 
@@ -139,6 +147,59 @@ main {
 footer {
   position: relative;
   z-index: 1;
+}
+
+.back-home {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  z-index: 1100;
+  background: rgba(var(--color-bg-rgb), 0.6);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, border 0.2s ease;
+}
+
+.back-home.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-home:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.6);
+  color: var(--color-accent);
+}
+
+.back-home .arrow {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-left: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.back-home .arrow::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 2px;
+  height: 16px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  transform-origin: top;
 }
 
 .section {
@@ -289,6 +350,36 @@ footer {
   }
 }
 
+@keyframes flare-depth {
+  0% {
+    transform: translate3d(-2.4%, -1.5%, -54px) scale(0.375);
+    opacity: 0.52;
+  }
+  50% {
+    transform: translate3d(2.4%, 1.5%, -72px) scale(0.42);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(-2.4%, -1.5%, -54px) scale(0.375);
+    opacity: 0.52;
+  }
+}
+
+@keyframes flare-depth-alt {
+  0% {
+    transform: translate3d(2.1%, -1.8%, -42px) scale(0.36);
+    opacity: 0.44;
+  }
+  50% {
+    transform: translate3d(-2.1%, 1.8%, -63px) scale(0.402);
+    opacity: 0.72;
+  }
+  100% {
+    transform: translate3d(2.1%, -1.8%, -42px) scale(0.36);
+    opacity: 0.44;
+  }
+}
+
 @keyframes blink {
   0%,
   49% {
@@ -332,5 +423,11 @@ footer {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  body::before,
+  body::after {
+    animation-duration: 15s !important;
+    animation-iteration-count: infinite !important;
   }
 }

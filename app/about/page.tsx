@@ -75,20 +75,24 @@ export default function AboutPage() {
             <div className={styles.selfieGrid}>
               {[
                 {
-                  src: "/gallery/selfie1a.png",
-                  alt: "Self portrait with soft lighting"
+                  src: "/gallery/selfie1.jpg",
+                  alt: "Self portrait 01"
                 },
                 {
                   src: "/gallery/selfie2.jpg",
-                  alt: "Self portrait in studio light"
+                  alt: "Self portrait 02"
                 },
                 {
                   src: "/gallery/selfie3.jpg",
-                  alt: "Self portrait with natural tones"
+                  alt: "Self portrait 03"
                 },
                 {
                   src: "/gallery/selfie4.jpg",
-                  alt: "Self portrait with warm contrast"
+                  alt: "Self portrait 04"
+                },
+                {
+                  src: "/gallery/selfie5.jpg",
+                  alt: "Self portrait 05"
                 }
               ].map((item) => (
                 <div className={styles.selfieItem} key={item.src}>
@@ -138,6 +142,42 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
+          <div className={styles.certBlock}>
+            <div className={`glass-panel ${styles.certCard}`}>
+              <div className={styles.certHeader}>
+                <p className={homeStyles.label}>SoloLearn Certificates</p>
+                <h3 className={styles.certTitle}>
+                  Proof of focused study and consistent delivery.
+                </h3>
+              </div>
+              <div className={styles.certGrid}>
+                {[
+                  {
+                    src: "/gallery/certificate_JS.jpeg",
+                    alt: "SoloLearn JavaScript certificate"
+                  },
+                  {
+                    src: "/gallery/certificate_Javascript.jpeg",
+                    alt: "SoloLearn JavaScript course certificate"
+                  },
+                  {
+                    src: "/gallery/certificate_PHP.jpeg",
+                    alt: "SoloLearn PHP certificate"
+                  }
+                ].map((item) => (
+                  <div className={styles.certItem} key={item.src}>
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 320px"
+                      className={styles.certImage}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <hr className="terminal-divider" />
         <div className="row g-4">
@@ -171,7 +211,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className={styles.panelLabel}>Backend</p>
-                  <p className="text-muted">PHP, SQL</p>
+                  <p className="text-muted">PHP, SQL, Node.js</p>
                 </div>
                 <div>
                   <p className={styles.panelLabel}>Systems</p>

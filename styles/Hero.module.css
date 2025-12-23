@@ -13,12 +13,42 @@
   background-attachment: fixed;
 }
 
+.hero::before,
 .hero::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: none;
+  inset: -15% -10%;
   pointer-events: none;
+  z-index: 0;
+  opacity: 0.32;
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  animation: flare-depth 10s ease-in-out infinite;
+}
+
+.hero::before {
+  background: radial-gradient(
+      circle at 18% 22%,
+      rgba(var(--color-accent-rgb), 0.35),
+      transparent 8.4%
+    ),
+    radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.12), transparent 7.2%),
+    radial-gradient(circle at 48% 40%, rgba(var(--color-accent-rgb), 0.22), transparent 6%),
+    radial-gradient(circle at 10% 75%, rgba(255, 255, 255, 0.08), transparent 5.4%);
+}
+
+.hero::after {
+  background: radial-gradient(
+      circle at 30% 78%,
+      rgba(var(--color-accent-rgb), 0.22),
+      transparent 7.8%
+    ),
+    radial-gradient(circle at 85% 28%, rgba(255, 255, 255, 0.1), transparent 6.6%),
+    radial-gradient(circle at 62% 18%, rgba(var(--color-accent-rgb), 0.2), transparent 5.4%),
+    radial-gradient(circle at 92% 62%, rgba(255, 255, 255, 0.08), transparent 4.8%);
+  opacity: 0.28;
+  animation: flare-depth-alt 12.5s ease-in-out infinite;
+  animation-direction: alternate;
 }
 
 .hero :global(.parallax-layer) {

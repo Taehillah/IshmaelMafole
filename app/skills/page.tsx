@@ -35,7 +35,11 @@ const skillGroups = [
   {
     title: "Business Tools",
     description: "Data analysis and structured reporting.",
-    skills: [{ name: "Excel", level: "Good", value: 76 }]
+    skills: [
+      { name: "Excel", level: "Good", value: 76 },
+      { name: "PowerPoint", level: "Great", value: 88 },
+      { name: "Word", level: "Great", value: 88 }
+    ]
   },
   {
     title: "Operating Systems",

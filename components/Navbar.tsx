@@ -47,14 +47,19 @@ export default function Navbar() {
           <span className={`navbar-toggler-icon ${styles.toggler}`} />
         </button>
         <div className="collapse navbar-collapse" id="primaryNav">
-          <ul className={`navbar-nav ms-auto ${styles.navList}`}>
-            {navItems.map((item) => (
-              <li className="nav-item" key={item.href}>
-                <Link className={`nav-link ${styles.navLink}`} href={item.href}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            <ul className={`navbar-nav ms-auto ${styles.navList}`}>
+              {navItems.map((item) => (
+                <li className="nav-item" key={item.href}>
+                  <Link
+                    className={`nav-link ${styles.navLink} ${
+                      pathname === item.href ? styles.navLinkActive : ""
+                    }`}
+                    href={item.href}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
