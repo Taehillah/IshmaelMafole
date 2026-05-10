@@ -18,10 +18,8 @@ export default function HomeBodyLogo() {
   }, [isHome]);
 
   return isHome ? (
-    <div className="home-logo-mark app-logo-orbit" aria-hidden="true">
-      <span className="app-logo-spark app-logo-spark--blue" />
-      <span className="app-logo-spark app-logo-spark--white" />
-      <span className="app-logo-spark app-logo-spark--yellow" />
+    <div className="home-logo-mark app-logo-orbit app-logo-orbit--home" aria-hidden="true">
+      <span className="home-logo-image" />
     </div>
   ) : null;
 }

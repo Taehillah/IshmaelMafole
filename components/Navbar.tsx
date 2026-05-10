@@ -35,9 +35,6 @@ export default function Navbar() {
               height={100}
               className={styles.logo}
             />
-            <span className="app-logo-spark app-logo-spark--blue" />
-            <span className="app-logo-spark app-logo-spark--white" />
-            <span className="app-logo-spark app-logo-spark--yellow" />
           </span>
         </Link>
         <button
