@@ -17,5 +17,11 @@ export default function HomeBodyLogo() {
     };
   }, [isHome]);
 
-  return isHome ? <div className="home-logo-mark" aria-hidden="true" /> : null;
+  return isHome ? (
+    <div className="home-logo-mark app-logo-orbit" aria-hidden="true">
+      <span className="app-logo-spark app-logo-spark--blue" />
+      <span className="app-logo-spark app-logo-spark--white" />
+      <span className="app-logo-spark app-logo-spark--yellow" />
+    </div>
+  ) : null;
 }

@@ -27,13 +27,18 @@ export default function Navbar() {
     <nav className={`navbar navbar-expand-lg navbar-dark ${styles.navbar}`}>
       <div className="container">
         <Link className={`navbar-brand ${styles.brand}`} href="/">
-          <Image
-            src="/gallery/logo.png"
-            alt="Ishmael L. Mafole logo"
-            width={100}
-            height={100}
-            className={styles.logo}
-          />
+          <span className="app-logo-orbit app-logo-orbit--nav">
+            <Image
+              src="/gallery/logo.png"
+              alt="Ishmael L. Mafole logo"
+              width={100}
+              height={100}
+              className={styles.logo}
+            />
+            <span className="app-logo-spark app-logo-spark--blue" />
+            <span className="app-logo-spark app-logo-spark--white" />
+            <span className="app-logo-spark app-logo-spark--yellow" />
+          </span>
         </Link>
         <button
           className="navbar-toggler"
