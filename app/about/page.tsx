@@ -77,19 +77,19 @@ export default function AboutPage() {
             <div className={styles.selfieGrid}>
               {[
                 {
-                  src: "/gallery/selfie1.jpg",
+                  src: "/gallery/optimized/selfie1-jpg.avif",
                   alt: "Self portrait 01"
                 },
                 {
-                  src: "/gallery/selfie2.jpg",
+                  src: "/gallery/optimized/selfie2.avif",
                   alt: "Self portrait 02"
                 },
                 {
-                  src: "/gallery/selfie3.jpg",
+                  src: "/gallery/optimized/selfie3.avif",
                   alt: "Self portrait 03"
                 },
                 {
-                  src: "/gallery/selfie4.jpg",
+                  src: "/gallery/optimized/selfie4.avif",
                   alt: "Self portrait 04"
                 },
                 {

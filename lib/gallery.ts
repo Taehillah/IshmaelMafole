@@ -67,6 +67,7 @@ const fallbackGalleryItems: GalleryItem[] = [
 
 const galleryExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const galleryDirectory = path.join(process.cwd(), "public", "gallery");
+const optimizedGalleryDirectory = path.join(galleryDirectory, "optimized");
 
 const toTitleCase = (value: string) =>
   value
@@ -78,6 +79,32 @@ const toTitleCase = (value: string) =>
 const toSentenceCase = (value: string) =>
   value ? value.charAt(0).toUpperCase() + value.slice(1) : value;
 
+const toAssetSlug = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const getOptimizedSrc = (fileName: string) => {
+  const parsed = path.parse(fileName);
+  const stem = toAssetSlug(parsed.name);
+  const extension = parsed.ext.toLowerCase().replace(".", "");
+  const candidates = [`${stem}-${extension}`, stem];
+
+  for (const candidate of candidates) {
+    for (const format of ["avif", "webp"]) {
+      const optimizedFileName = `${candidate}.${format}`;
+      const optimizedPath = path.join(optimizedGalleryDirectory, optimizedFileName);
+
+      if (fs.existsSync(optimizedPath)) {
+        return `/gallery/optimized/${optimizedFileName}`;
+      }
+    }
+  }
+
+  return `/gallery/${fileName}`;
+};
+
 const toGalleryItem = (fileName: string): GalleryItem => {
   const baseName = path.parse(fileName).name;
   const cleanedName = baseName.replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
@@ -85,7 +112,7 @@ const toGalleryItem = (fileName: string): GalleryItem => {
   const caption = toSentenceCase(cleanedName);
 
   return {
-    src: `/gallery/${fileName}`,
+    src: getOptimizedSrc(fileName),
     title,
     caption,
     type: "Photo"

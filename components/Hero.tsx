@@ -78,7 +78,7 @@ export default function Hero({ featuredImages = [], lightImage }: HeroProps) {
                       fill
                       sizes="(max-width: 991px) 100vw, 45vw"
                       className={`${styles.heroImage} ${styles.heroImageLight}`}
-                      priority
+                      loading="lazy"
                     />
                   ) : null}
                   <div className={styles.heroImageOverlay} />

@@ -29,7 +29,7 @@ export default function Navbar() {
         <Link className={`navbar-brand ${styles.brand}`} href="/">
           <span className="app-logo-orbit app-logo-orbit--nav">
             <Image
-              src="/gallery/logo.png"
+              src="/gallery/optimized/logo.avif"
               alt="Ishmael L. Mafole logo"
               width={100}
               height={100}

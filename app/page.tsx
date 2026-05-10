@@ -6,8 +6,8 @@ import type { GalleryItem } from "../lib/gallery";
 
 export default function HomePage() {
   const galleryItems = getGalleryItems();
-  const heroFileName = "gallery/selfie1a.png";
-  const lightHeroFileName = "gallery/selfie1b.png";
+  const heroFileName = "gallery/optimized/selfie1a.avif";
+  const lightHeroFileName = "gallery/optimized/selfie1b.avif";
   const heroFilePath = path.join(process.cwd(), "public", heroFileName);
   const lightHeroFilePath = path.join(process.cwd(), "public", lightHeroFileName);
   const heroFileExists = fs.existsSync(heroFilePath);

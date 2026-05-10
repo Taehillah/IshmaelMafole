@@ -67,15 +67,15 @@ export const projects: ProjectCase[] = [
       "Reduced scheduling conflicts, accelerated payroll readiness, and improved staffing transparency.",
     gallery: [
       {
-        src: "/gallery/staff1.png",
+        src: "/gallery/optimized/staff1.avif",
         alt: "StaffSync dashboard overview"
       },
       {
-        src: "/gallery/staff2.png",
+        src: "/gallery/optimized/staff2.avif",
         alt: "StaffSync staffing workflow view"
       },
       {
-        src: "/gallery/staff3.png",
+        src: "/gallery/optimized/staff3.avif",
         alt: "StaffSync reporting interface"
       }
     ],
