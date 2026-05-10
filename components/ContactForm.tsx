@@ -71,13 +71,21 @@ export default function ContactForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Message could not be sent.");
+        const result = (await response.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+
+        throw new Error(result?.error ?? "Message could not be sent.");
       }
 
       setValues(initialState);
       setSubmitted(true);
-    } catch {
-      setSubmitError("Message could not be sent. Please email me directly.");
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Message could not be sent. Please email me directly."
+      );
     } finally {
       setIsSubmitting(false);
     }

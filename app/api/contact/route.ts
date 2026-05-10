@@ -18,6 +18,14 @@ const escapeHtml = (value: string) =>
 
 const isValidEmail = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
 
+const getErrorMessage = (error: unknown) => {
+  if (error && typeof error === "object" && "message" in error) {
+    return String(error.message);
+  }
+
+  return "Email service rejected the message.";
+};
+
 export async function POST(request: Request) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL ?? "ishmaelmafole@gmail.com";
@@ -54,20 +62,38 @@ export async function POST(request: Request) {
 
   const resend = new Resend(resendApiKey);
 
-  await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: toEmail,
-    replyTo: email,
-    subject: `Portfolio contact: ${subject}`,
-    html: `
-      <h2>New portfolio contact form submission</h2>
-      <p><strong>Name:</strong> ${safeName}</p>
-      <p><strong>Email:</strong> ${safeEmail}</p>
-      <p><strong>Subject:</strong> ${safeSubject}</p>
-      <p><strong>Message:</strong></p>
-      <p>${safeMessage}</p>
-    `
-  });
+  try {
+    const { error } = await resend.emails.send({
+      from: "Ishmael Mafole Portfolio <onboarding@resend.dev>",
+      to: toEmail,
+      replyTo: email,
+      subject: `Portfolio contact: ${subject}`,
+      html: `
+        <h2>New portfolio contact form submission</h2>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Subject:</strong> ${safeSubject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${safeMessage}</p>
+      `
+    });
+
+    if (error) {
+      console.error("Resend contact error:", error);
+
+      return NextResponse.json(
+        { error: `Email service error: ${getErrorMessage(error)}` },
+        { status: 502 }
+      );
+    }
+  } catch (error) {
+    console.error("Contact email send failed:", error);
+
+    return NextResponse.json(
+      { error: `Email service error: ${getErrorMessage(error)}` },
+      { status: 502 }
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }
