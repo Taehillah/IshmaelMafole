@@ -9,10 +9,13 @@ type HeroImage = GalleryItem & {
 
 type HeroProps = {
   featuredImages?: HeroImage[];
+  lightImage?: HeroImage;
 };
 
-export default function Hero({ featuredImages = [] }: HeroProps) {
+export default function Hero({ featuredImages = [], lightImage }: HeroProps) {
   const heroImage = featuredImages[0];
+  const lightHeroImage = lightImage ?? heroImage;
+  const heroTag = heroImage?.tag ?? lightHeroImage?.tag;
 
   return (
     <section className={`parallax-block ${styles.hero}`}>
@@ -65,12 +68,22 @@ export default function Hero({ featuredImages = [] }: HeroProps) {
                     alt={heroImage.title}
                     fill
                     sizes="(max-width: 991px) 100vw, 45vw"
-                    className={styles.heroImage}
+                    className={`${styles.heroImage} ${styles.heroImageDark}`}
                     priority
                   />
+                  {lightHeroImage ? (
+                    <Image
+                      src={lightHeroImage.src}
+                      alt={lightHeroImage.title}
+                      fill
+                      sizes="(max-width: 991px) 100vw, 45vw"
+                      className={`${styles.heroImage} ${styles.heroImageLight}`}
+                      priority
+                    />
+                  ) : null}
                   <div className={styles.heroImageOverlay} />
-                  {heroImage.tag ? (
-                    <span className={styles.imageTag}>{heroImage.tag}</span>
+                  {heroTag ? (
+                    <span className={styles.imageTag}>{heroTag}</span>
                   ) : null}
                 </div>
               </>

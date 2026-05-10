@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import BootstrapClient from "../components/BootstrapClient";
 import HomeBodyLogo from "../components/HomeBodyLogo";
 import BackHomeButton from "../components/BackHomeButton";
+import ThemeToggle from "../components/ThemeToggle";
 
 const bodyFont = Space_Grotesk({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <BackHomeButton />
+        <ThemeToggle />
         <Footer />
       </body>
     </html>

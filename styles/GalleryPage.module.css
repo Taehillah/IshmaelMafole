@@ -24,6 +24,21 @@
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
+  background: linear-gradient(
+    145deg,
+    rgba(var(--color-surface-rgb), 0.82),
+    rgba(var(--color-bg-rgb), 0.58)
+  );
+}
+
+.calloutCard h3 {
+  color: var(--color-text);
+}
+
+.calloutCard :global(.text-muted) {
+  color: var(--color-text) !important;
+  opacity: 0.88;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 .group {

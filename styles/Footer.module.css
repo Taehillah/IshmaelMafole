@@ -20,6 +20,13 @@
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
   letter-spacing: 0.04em;
+  color: var(--color-text);
+}
+
+.footer :global(.text-muted) {
+  color: var(--color-text) !important;
+  opacity: 0.88;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 .label {
@@ -27,7 +34,8 @@
   font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-text);
+  opacity: 0.88;
   margin-bottom: 0.75rem;
 }
 

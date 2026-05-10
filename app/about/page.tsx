@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/About.module.css";
 import homeStyles from "../../styles/Home.module.css";
+import BitstreamGame from "../../components/BitstreamGame";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function AboutPage() {
   return (
     <div className="section">
       <div className="container">
+        <BitstreamGame />
         <SectionHeading
           label="About"
           title="A systems-aware engineer with a creative calling"

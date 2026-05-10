@@ -2,12 +2,16 @@ import fs from "fs";
 import path from "path";
 import Hero from "../components/Hero";
 import { getGalleryItems } from "../lib/gallery";
+import type { GalleryItem } from "../lib/gallery";
 
 export default function HomePage() {
   const galleryItems = getGalleryItems();
   const heroFileName = "gallery/selfie1a.png";
+  const lightHeroFileName = "gallery/selfie1b.png";
   const heroFilePath = path.join(process.cwd(), "public", heroFileName);
+  const lightHeroFilePath = path.join(process.cwd(), "public", lightHeroFileName);
   const heroFileExists = fs.existsSync(heroFilePath);
+  const lightHeroFileExists = fs.existsSync(lightHeroFilePath);
   const preferredHeroFiles = [
     "self closeup.jpg",
     "full portrait.jpg",
@@ -21,7 +25,7 @@ export default function HomePage() {
       )
     )
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
-  const heroItem = heroFileExists
+  const heroItem: GalleryItem | undefined = heroFileExists
     ? {
         src: `/${heroFileName}`,
         title: "Selfie Portrait",
@@ -29,6 +33,14 @@ export default function HomePage() {
         type: "Photo"
       }
     : preferredHeroItems[0] ?? galleryItems[0];
+  const lightHeroItem: GalleryItem | undefined = lightHeroFileExists
+    ? {
+        src: `/${lightHeroFileName}`,
+        title: "Selfie Portrait",
+        caption: "",
+        type: "Photo"
+      }
+    : heroItem;
   const heroImages = heroItem
     ? [
         {
@@ -38,6 +50,6 @@ export default function HomePage() {
     : [];
 
   return (
-    <Hero featuredImages={heroImages} />
+    <Hero featuredImages={heroImages} lightImage={lightHeroItem} />
   );
 }

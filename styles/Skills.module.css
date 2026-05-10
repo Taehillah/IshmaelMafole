@@ -2,56 +2,122 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
+  align-items: stretch;
 }
 
 .card {
   padding: 2rem;
-  border-radius: 20px;
+  border-radius: 22px;
   display: grid;
   gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 32px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 18% 12%,
+    rgba(255, 255, 255, 0.2),
+    transparent 55%
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.cardHeader {
+  display: grid;
+  gap: 0.6rem;
 }
 
 .cardHeader h3 {
   margin: 0 0 0.6rem;
   font-size: 1.3rem;
   letter-spacing: 0.02em;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
 }
 
 .cardHeader p {
   margin: 0;
 }
 
+.cardHeader :global(.text-muted) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text) !important;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 10px 22px rgba(0, 0, 0, 0.25);
+  text-shadow: none;
+  justify-self: center;
+  text-align: center;
+}
+
 .skills {
   display: grid;
-  gap: 1rem;
+  gap: 0.9rem;
 }
 
 .skill {
   display: grid;
   gap: 0.4rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .skillHeader {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono), monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-text);
+  opacity: 0.88;
 }
 
 .level {
-  color: var(--color-text);
+  color: var(--color-accent);
+  background: rgba(var(--color-accent-rgb), 0.12);
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
 }
 
 .track {
   position: relative;
-  height: 8px;
+  height: 9px;
   border-radius: 999px;
-  background: rgba(var(--color-bg-rgb), 0.5);
+  background: rgba(10, 16, 18, 0.5);
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .fill {
@@ -60,8 +126,9 @@
   border-radius: 999px;
   background: linear-gradient(
     90deg,
-    rgba(var(--color-accent-rgb), 0.9),
-    rgba(var(--color-accent-rgb), 0.45)
+    rgba(var(--color-accent-rgb), 0.95),
+    rgba(var(--color-accent-rgb), 0.35)
   );
   box-shadow: 0 0 12px rgba(var(--color-accent-rgb), 0.25);
+  transition: width 0.6s ease;
 }
