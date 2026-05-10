@@ -1,7 +1,8 @@
+import type { ReactElement } from "react";
 import styles from "../styles/Socials.module.css";
 import type { SocialLink } from "../lib/socials";
 
-const icons: Record<string, JSX.Element> = {
+const icons: Record<string, ReactElement> = {
   GitHub: (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path

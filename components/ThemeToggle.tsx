@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 
 type ThemeMode = "dark" | "light";
 
 const STORAGE_KEY = "theme-mode";
+const THEME_CHANGE_EVENT = "theme-mode-change";
 
 const getPreferredTheme = (): ThemeMode => {
   if (typeof window === "undefined") {
@@ -21,27 +22,30 @@ const getPreferredTheme = (): ThemeMode => {
     : "light";
 };
 
+const getServerTheme = (): ThemeMode => "dark";
+
+const subscribeToTheme = (onStoreChange: () => void) => {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
+  };
+};
+
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<ThemeMode>("dark");
-  const [isReady, setIsReady] = useState(false);
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getPreferredTheme,
+    getServerTheme
+  );
   const isFirstRun = useRef(true);
 
   useEffect(() => {
-    const preferred = getPreferredTheme();
-    setTheme(preferred);
-    document.documentElement.dataset.theme = preferred;
-    setIsReady(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isReady) {
-      return;
-    }
-
     if (isFirstRun.current) {
       isFirstRun.current = false;
       document.documentElement.dataset.theme = theme;
-      window.localStorage.setItem(STORAGE_KEY, theme);
       return;
     }
 
@@ -55,16 +59,20 @@ export default function ThemeToggle() {
     }, 400);
 
     return () => window.clearTimeout(timeout);
-  }, [theme, isReady]);
+  }, [theme]);
 
   const isDark = theme === "dark";
   const nextThemeLabel = isDark ? "light" : "dark";
+  const handleThemeChange = () => {
+    window.localStorage.setItem(STORAGE_KEY, isDark ? "light" : "dark");
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
+  };
 
   return (
     <button
       type="button"
       className="theme-toggle"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={handleThemeChange}
       aria-label={`Switch to ${nextThemeLabel} mode`}
     >
       <span className="theme-toggle__icon" aria-hidden="true">

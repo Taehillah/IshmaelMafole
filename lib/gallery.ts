@@ -127,7 +127,7 @@ export const getGalleryItems = (): GalleryItem[] => {
     return imageFiles
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }))
       .map(toGalleryItem);
-  } catch (error) {
+  } catch {
     return fallbackGalleryItems;
   }
 };
