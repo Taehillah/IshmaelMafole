@@ -16,6 +16,8 @@ export default function ContactForm() {
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -43,18 +45,42 @@ export default function ContactForm() {
     return nextErrors;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate();
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setSubmitted(false);
+      setSubmitError("");
       return;
     }
 
     setErrors({});
-    setSubmitted(true);
+    setSubmitted(false);
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      });
+
+      if (!response.ok) {
+        throw new Error("Message could not be sent.");
+      }
+
+      setValues(initialState);
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Message could not be sent. Please email me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -128,12 +154,14 @@ export default function ContactForm() {
             ) : null}
           </div>
         </div>
-        <button type="submit" className={styles.submit}>
-          Send Message
+        <button type="submit" className={styles.submit} disabled={isSubmitting}>
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
       </form>
       <div className={styles.terminal} aria-live="polite">
-        {submitted
+        {submitError
+          ? `>> ${submitError}`
+          : submitted
           ? ">> Transmission accepted. Expect a reply within 24 hours."
           : ">> Awaiting secure input..."}
       </div>

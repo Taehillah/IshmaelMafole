@@ -28,7 +28,7 @@ export default function ContactPage() {
               <div className={styles.infoList}>
                 <div>
                   <p className={styles.infoLabel}>Email</p>
-                  <p className="text-muted">hello@ishmaelmafole.dev</p>
+                  <p className="text-muted">ishmaelmafole@gmail.com</p>
                 </div>
                 <div>
                   <p className={styles.infoLabel}>Location</p>

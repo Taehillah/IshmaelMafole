@@ -22,6 +22,7 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ishmaelmafole.co.za"),
   title: {
     default: "Ishmael L. Mafole | Full-Stack & Systems-Aware Developer",
     template: "%s | Ishmael L. Mafole"

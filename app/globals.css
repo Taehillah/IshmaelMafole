@@ -83,10 +83,25 @@ body {
 }
 
 body.home-logo {
-  background-image: var(--page-background), url("/gallery/logo.png");
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover, 120px 120px;
-  background-position: center, 2rem 2rem;
+  background-image: var(--page-background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home-logo-mark {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: url("/gallery/logo.png") center / cover no-repeat;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.35);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(var(--color-accent-rgb), 0.18);
+  pointer-events: none;
+  z-index: 4;
 }
 
 body::before,
@@ -333,6 +348,12 @@ html[data-theme="light"] body.home-logo {
   background-position: center;
 }
 
+html[data-theme="light"] .home-logo-mark {
+  border-color: rgba(var(--color-accent-rgb), 0.22);
+  box-shadow: 0 18px 34px rgba(40, 55, 70, 0.16),
+    0 0 24px rgba(var(--color-accent-rgb), 0.12);
+}
+
 html[data-theme="light"] button,
 html[data-theme="light"] [class*="Button"],
 html[data-theme="light"] .back-home {
@@ -553,8 +574,15 @@ html[data-theme="light"] .back-home {
   }
 
   body.home-logo {
-    background-size: cover, 90px 90px;
-    background-position: center, 1.25rem 1.25rem;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .home-logo-mark {
+    top: 1.25rem;
+    left: 1.25rem;
+    width: 90px;
+    height: 90px;
   }
 }
 

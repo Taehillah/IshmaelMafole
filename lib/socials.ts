@@ -20,14 +20,14 @@ export const socials: SocialLink[] = [
   },
   {
     name: "Portfolio Website",
-    href: "https://ishmaelmafole.dev",
-    handle: "ishmaelmafole.dev",
+    href: "https://www.ishmaelmafole.co.za",
+    handle: "www.ishmaelmafole.co.za",
     note: "Primary showcase for engineering and visual projects."
   },
   {
     name: "Email",
-    href: "mailto:hello@ishmaelmafole.dev",
-    handle: "hello@ishmaelmafole.dev",
+    href: "mailto:ishmaelmafole@gmail.com",
+    handle: "ishmaelmafole@gmail.com",
     note: "Direct channel for collaboration and inquiries."
   },
   {

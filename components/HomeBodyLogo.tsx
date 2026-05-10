@@ -5,17 +5,17 @@ import { usePathname } from "next/navigation";
 
 export default function HomeBodyLogo() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const body = document.body;
-    const isHome = pathname === "/";
 
     body.classList.toggle("home-logo", isHome);
 
     return () => {
       body.classList.remove("home-logo");
     };
-  }, [pathname]);
+  }, [isHome]);
 
-  return null;
+  return isHome ? <div className="home-logo-mark" aria-hidden="true" /> : null;
 }
