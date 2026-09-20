@@ -105,3 +105,54 @@
 .toggler {
   filter: var(--nav-toggler-filter);
 }
+
+.navbar :global(.navbar-toggler) {
+  border-color: rgba(var(--color-accent-rgb), 0.5);
+  background: rgba(var(--color-accent-rgb), 0.1);
+  box-shadow: 0 0 16px rgba(var(--color-accent-rgb), 0.12);
+}
+
+.navbar :global(.navbar-toggler:focus) {
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-accent-rgb), 0.2);
+}
+
+@media (max-width: 991px) {
+  .navbar {
+    padding: 0.6rem 0;
+  }
+
+  .brand {
+    gap: 0.5rem;
+  }
+
+  .logo,
+  :global(.app-logo-orbit--nav) {
+    width: 68px;
+    height: 68px;
+  }
+
+  .navList {
+    gap: 0.15rem;
+    padding: 0.85rem 0 0.25rem;
+  }
+
+  .navLink {
+    display: block;
+    padding: 0.65rem 0 !important;
+    letter-spacing: 0.08em;
+  }
+
+  .navLink::after {
+    left: 0;
+    bottom: 0.2rem;
+    width: 48px;
+  }
+}
+
+@media (max-width: 575px) {
+  .logo,
+  :global(.app-logo-orbit--nav) {
+    width: 58px;
+    height: 58px;
+  }
+}

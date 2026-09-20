@@ -1,24 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import styles from "../styles/Hero.module.css";
-import type { GalleryItem } from "../lib/gallery";
 
-type HeroImage = GalleryItem & {
-  tag?: string;
-};
-
-type HeroProps = {
-  featuredImages?: HeroImage[];
-  lightImage?: HeroImage;
-};
-
-export default function Hero({ featuredImages = [], lightImage }: HeroProps) {
-  const heroImage = featuredImages[0];
-  const lightHeroImage = lightImage ?? heroImage;
-  const heroTag = heroImage?.tag ?? lightHeroImage?.tag;
-
+export default function Hero() {
   return (
     <section className={`parallax-block ${styles.hero}`}>
+      <div className={styles.abstractBackdrop} aria-hidden="true" />
       <div className="parallax-layer" aria-hidden="true" />
       <div className="container position-relative">
         <div className={styles.heroShell}>
@@ -41,7 +27,7 @@ export default function Hero({ featuredImages = [], lightImage }: HeroProps) {
                 A servant of God
               </Link>
               <Link className={styles.roleLink} href="/projects">
-                Software Developer
+                Software Developer at Aura Code Pty Ltd
               </Link>
               <Link className={styles.roleLink} href="/gallery">
                 Photographer/Videographer
@@ -58,38 +44,6 @@ export default function Hero({ featuredImages = [], lightImage }: HeroProps) {
                 Start a Conversation
               </Link>
             </div>
-          </div>
-          <div className={styles.portraitPanel} aria-hidden={!heroImage}>
-            {heroImage ? (
-              <>
-                <div className={styles.portraitCrop}>
-                  <Image
-                    src={heroImage.src}
-                    alt={heroImage.title}
-                    fill
-                    sizes="(max-width: 991px) 100vw, 45vw"
-                    className={`${styles.heroImage} ${styles.heroImageDark}`}
-                    priority
-                  />
-                  {lightHeroImage ? (
-                    <Image
-                      src={lightHeroImage.src}
-                      alt={lightHeroImage.title}
-                      fill
-                      sizes="(max-width: 991px) 100vw, 45vw"
-                      className={`${styles.heroImage} ${styles.heroImageLight}`}
-                      loading="lazy"
-                    />
-                  ) : null}
-                  <div className={styles.heroImageOverlay} />
-                  {heroTag ? (
-                    <span className={styles.imageTag}>{heroTag}</span>
-                  ) : null}
-                </div>
-              </>
-            ) : (
-              <div className={styles.imageFallback} />
-            )}
           </div>
         </div>
       </div>

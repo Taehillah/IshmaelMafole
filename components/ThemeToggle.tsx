@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ThemeMode = "dark" | "light";
 
@@ -22,49 +22,52 @@ const getPreferredTheme = (): ThemeMode => {
     : "light";
 };
 
-const getServerTheme = (): ThemeMode => "dark";
+const applyTheme = (theme: ThemeMode, animate = true) => {
+  const root = document.documentElement;
 
-const subscribeToTheme = (onStoreChange: () => void) => {
-  window.addEventListener("storage", onStoreChange);
-  window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
+  if (animate) {
+    root.classList.add("theme-transition");
+  }
 
-  return () => {
-    window.removeEventListener("storage", onStoreChange);
-    window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
-  };
+  root.dataset.theme = theme;
+  window.localStorage.setItem(STORAGE_KEY, theme);
+
+  if (animate) {
+    window.setTimeout(() => {
+      root.classList.remove("theme-transition");
+    }, 400);
+  }
 };
 
 export default function ThemeToggle() {
-  const theme = useSyncExternalStore(
-    subscribeToTheme,
-    getPreferredTheme,
-    getServerTheme
-  );
-  const isFirstRun = useRef(true);
+  const [theme, setTheme] = useState<ThemeMode>(getPreferredTheme);
+  const hasAppliedInitialTheme = useRef(false);
 
   useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      document.documentElement.dataset.theme = theme;
-      return;
-    }
-
-    const root = document.documentElement;
-    root.classList.add("theme-transition");
-    root.dataset.theme = theme;
-    window.localStorage.setItem(STORAGE_KEY, theme);
-
-    const timeout = window.setTimeout(() => {
-      root.classList.remove("theme-transition");
-    }, 400);
-
-    return () => window.clearTimeout(timeout);
+    applyTheme(theme, hasAppliedInitialTheme.current);
+    hasAppliedInitialTheme.current = true;
   }, [theme]);
+
+  useEffect(() => {
+    const handleStoredThemeChange = () => {
+      setTheme(getPreferredTheme());
+    };
+
+    window.addEventListener("storage", handleStoredThemeChange);
+    window.addEventListener(THEME_CHANGE_EVENT, handleStoredThemeChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStoredThemeChange);
+      window.removeEventListener(THEME_CHANGE_EVENT, handleStoredThemeChange);
+    };
+  }, []);
 
   const isDark = theme === "dark";
   const nextThemeLabel = isDark ? "light" : "dark";
   const handleThemeChange = () => {
-    window.localStorage.setItem(STORAGE_KEY, isDark ? "light" : "dark");
+    const nextTheme = isDark ? "light" : "dark";
+    window.localStorage.setItem(STORAGE_KEY, nextTheme);
+    setTheme(nextTheme);
     window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   };
 

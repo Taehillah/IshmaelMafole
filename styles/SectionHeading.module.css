@@ -31,3 +31,21 @@
   color: var(--color-muted);
   line-height: 1.7;
 }
+
+@media (max-width: 575px) {
+  .wrapper {
+    margin-bottom: 1.7rem;
+    padding-left: 1rem;
+  }
+
+  .title {
+    margin-top: 0.9rem;
+    font-size: 1.75rem;
+    line-height: 1.18;
+  }
+
+  .description {
+    margin-top: 0.85rem;
+    line-height: 1.6;
+  }
+}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 import styles from "../styles/Navbar.module.css";
 
 const navItems = [
@@ -18,6 +19,7 @@ const navItems = [
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [menuOpen, setMenuOpen] = useState(false);
 
   if (isHome) {
     return null;
@@ -40,28 +42,31 @@ export default function Navbar() {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#primaryNav"
+          onClick={() => setMenuOpen((isOpen) => !isOpen)}
           aria-controls="primaryNav"
-          aria-expanded="false"
+          aria-expanded={menuOpen}
           aria-label="Toggle navigation"
         >
           <span className={`navbar-toggler-icon ${styles.toggler}`} />
         </button>
-        <div className="collapse navbar-collapse" id="primaryNav">
-            <ul className={`navbar-nav ms-auto ${styles.navList}`}>
-              {navItems.map((item) => (
-                <li className="nav-item" key={item.href}>
-                  <Link
-                    className={`nav-link ${styles.navLink} ${
-                      pathname === item.href ? styles.navLinkActive : ""
-                    }`}
-                    href={item.href}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+        <div
+          className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
+          id="primaryNav"
+        >
+          <ul className={`navbar-nav ms-auto ${styles.navList}`}>
+            {navItems.map((item) => (
+              <li className="nav-item" key={item.href}>
+                <Link
+                  className={`nav-link ${styles.navLink} ${
+                    pathname === item.href ? styles.navLinkActive : ""
+                  }`}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

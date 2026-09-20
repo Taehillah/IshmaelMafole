@@ -16,7 +16,7 @@
   --color-highlight: rgba(255, 255, 255, 0.08);
   --color-shadow: rgba(0, 0, 0, 0.55);
   --shadow-glow: 0 0 26px rgba(122, 217, 230, 0.25);
-  --nav-toggler-filter: invert(0.9);
+  --nav-toggler-filter: none;
   --hero-image-blend: screen;
   --hero-image-opacity: 0.85;
   --page-background: radial-gradient(
@@ -45,7 +45,7 @@
     --color-highlight: rgba(255, 255, 255, 0.08);
     --color-shadow: rgba(0, 0, 0, 0.55);
     --shadow-glow: 0 0 26px rgba(122, 217, 230, 0.25);
-    --nav-toggler-filter: invert(0.9);
+    --nav-toggler-filter: none;
     --hero-image-blend: screen;
     --hero-image-opacity: 0.85;
   }
@@ -57,14 +57,21 @@
 
 html {
   min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   background-color: var(--color-bg);
   background-image: var(--page-background);
-  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: auto;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   font-family: var(--font-body), sans-serif;
   background-color: var(--color-bg);
   background-image: var(--page-background);
@@ -75,7 +82,8 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   min-height: 100dvh;
-  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: auto;
   position: relative;
   isolation: isolate;
   perspective: 1200px;
@@ -274,8 +282,8 @@ footer {
 
 .theme-toggle {
   position: fixed;
-  left: 2rem;
-  bottom: 2rem;
+  top: 2rem;
+  left: 50%;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -290,6 +298,7 @@ footer {
   text-transform: uppercase;
   cursor: pointer;
   z-index: 1100;
+  transform: translateX(-50%);
   backdrop-filter: blur(14px) saturate(140%);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -297,7 +306,7 @@ footer {
 }
 
 .theme-toggle:hover {
-  transform: translateY(-2px);
+  transform: translate(-50%, -2px);
   border-color: rgba(var(--color-accent-rgb), 0.6);
   box-shadow: 0 20px 36px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -412,8 +421,7 @@ html[data-theme="light"] .back-home {
 
 @media (max-width: 700px) {
   .theme-toggle {
-    left: 1.25rem;
-    bottom: 1.25rem;
+    top: 1rem;
     padding: 0.4rem 0.7rem;
   }
 }
@@ -638,7 +646,11 @@ html[data-theme="light"] .back-home {
 
 @media (max-width: 575px) {
   .section {
-    padding: 60px 0;
+    padding: 46px 0;
+  }
+
+  .section-sm {
+    padding: 40px 0;
   }
 
   body.home-logo {
@@ -655,6 +667,23 @@ html[data-theme="light"] .back-home {
   .home-logo-image {
     width: 90px;
     height: 90px;
+  }
+
+  .back-home {
+    right: 1rem;
+    bottom: 1rem;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 380px) {
+  .theme-toggle {
+    max-width: calc(100vw - 2rem);
+  }
+
+  .theme-toggle__label {
+    display: none;
   }
 }
 

@@ -39,3 +39,30 @@
   color: var(--color-accent);
   margin-bottom: 0.3rem;
 }
+
+@media (max-width: 575px) {
+  .infoCard {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .infoTitle {
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+  }
+
+  .infoList {
+    gap: 1rem;
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+  }
+
+  .infoLabel {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .infoCard :global(.text-muted) {
+    overflow-wrap: anywhere;
+  }
+}

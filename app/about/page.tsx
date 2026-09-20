@@ -48,7 +48,8 @@ export default function AboutPage() {
             servant of God grounded in purpose, humility, and disciplined growth.
             My work sits at the intersection of software engineering and creative
             storytelling, focused on delivering platforms that institutions can
-            trust.
+            trust. I currently work as a Software Developer at Aura Code Pty Ltd,
+            building thoughtful digital solutions for real business needs.
           </p>
           <p>
             With a Diploma in Information Technology (NQF Level 6), I developed a
